@@ -1,0 +1,15 @@
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Box, Heading, Text, Link } from '@chakra-ui/react';
+
+function Nav() {
+  return (
+    <Box width="200px" flex="1 0 auto" pr="2em">
+      <Heading>Nav</Heading>
+      <Link as={Link} to="/">Homepage</Link>
+    </Box>
+  );
+}
+
+export default Nav;
