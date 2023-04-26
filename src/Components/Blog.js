@@ -14,24 +14,27 @@ function Blog() {
 
   useEffect(() => {
     axios
-      .get('/db.xml')
+      .get('../db/db.xml')
       .then(response => {
-        const blogs = response.data.blogs.map(blog => {
-          return {
-            id: blog.id,
-            title: blog.title,
-            author: blog.author,
-            date: blog.date,
-            content: blog.content,
-            summary: blog.summary
-          }
-        });
-        setBlogs(blogs);
+        parseString(response.data, (err, result) => {
+          const blogs = result.blogs.blog.map(blog => {
+            return {
+              id: blog.id[0],
+              title: blog.title[0],
+              author: blog.author[0],
+              date: blog.date[0],
+              content: blog.content[0],
+              summary: blog.summary[0]
+            }
+          });
+          setBlogs(blogs);
+        })
       })
       .catch(error => {
         console.log(error);
       });
   }, []);
+
 
   return (
     <Flex 
